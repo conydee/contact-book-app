@@ -4,7 +4,7 @@ from tkinter.constants import HORIZONTAL
 
 class Button(tk.Button):
     def __init__(self,parent, btntext):
-        super().__init__(parent, bg="lightgreen",
+        super().__init__(parent, bg="#3EB489",
                          font=("Comic Sans MS", 14),
                          text=btntext)
 
@@ -25,13 +25,23 @@ class Scale(tk.Scale):
 class Listbox(tk.Listbox):
     def __init__(self, parent):
         super().__init__(parent,
-                         bg="lightgreen",
+                         bg="#3EB489",
                          font=("Comic Sans MS", 14),
+                         relief="solid",
+                         borderwidth=2
                          )
 
 class Entry(tk.Entry):
     def __init__(self, parent):
         super().__init__(parent,
-                         bg="lightgreen",
-                         font=("Comic Sans MS", 14)
+                         bg="#3EB489",
+                         font=("Comic Sans MS", 14),
+                         relief="solid",
+                         borderwidth=2
+                         )
+
+class Frame(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent,
+                         bg="lightgreen"
                          )
