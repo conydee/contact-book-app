@@ -36,30 +36,57 @@ class MainApp(tk.Tk):
         self.frame2.rowconfigure(1, weight=1)
         self.frame2.rowconfigure(2, weight=1)
         self.frame2.columnconfigure(0, weight=1)
+        self.frame2.columnconfigure(1, weight=1)
 
 
         #widgets
 
         self.entry1 = Entry(self.frame2)
         self.entry1.grid(row=0, column=0)
+        self.entry1.configure(width=13)
+
+        self.entry2 = Entry(self.frame2)
+        self.entry2.grid(row=0, column=1)
+        self.entry2.configure(width=13)
 
         self.listbox1 = Listbox(self.frame2)
-        self.listbox1.grid(row=1, column=0, sticky="news", padx=20)
+        self.listbox1.grid(row=1, column=0, columnspan=2, sticky="news", padx=20)
 
         self.label1 = Label(self.frame1, "Contact Book")
         self.label1.grid(row=0, column=0, sticky="news")
 
         self.button1 = Button(self.frame1, "Add contact")
         self.button1.grid(row=1, column=0, sticky="news", padx=20, pady=20)
+        self.button1.configure(command=self.add)
 
         self.button2 = Button(self.frame1, "Delete contact")
         self.button2.grid(row=2, column=0, sticky="news", padx=20, pady=20)
+        self.button2.configure(command=self.delete)
 
         self.button3 = Button(self.frame1, "Save contacts")
         self.button3.grid(row=3, column=0, sticky="news", padx=20, pady=20)
 
         self.button4 = Button(self.frame1, "Load contacts")
         self.button4.grid(row=4, column=0, sticky="news", padx=20, pady=20)
+
+    def add(self):
+        name = self.entry1.get()
+        if not name.isalpha():
+            return
+        number = self.entry2.get()
+        if not number.isdigit():
+            return
+        contact = (name, number)
+        self.listbox1.insert("end", contact)
+        self.entry1.delete(0, "end")
+        self.entry2.delete(0, "end")
+
+    def delete(self):
+        selected = self.listbox1.curselection()
+        if selected:
+            self.listbox1.delete(selected)
+
+
 
 
 
